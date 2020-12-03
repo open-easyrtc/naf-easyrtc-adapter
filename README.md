@@ -1,6 +1,6 @@
 # Art Builds Multiplayer
 
-This A-Frame based VR experience allows you to easily experience  3D models in a simulated environment. 
+This A-Frame based VR experience allows you to easily experience  3D models in a simulated environment with your collaborators. 
 
 based on a NAF Easty RTC Adapter Network adapter fork: https://github.com/open-easyrtc/naf-easyrtc-adapter
 
