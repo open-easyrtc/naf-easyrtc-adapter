@@ -5,8 +5,10 @@
   <title>Art Builds Multiplayer</title>
   <meta name="description" content="Art Builds Multiplayer Environment">
 
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script> <!-- Main A Frame Package -->
+  
+  <!-- Networking Stuff -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script> 
   <script src="https://unpkg.com/open-easyrtc@^2.0.5/api/easyrtc.js"></script>
 
   <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe@0.7.1/dist/networked-aframe.js">\x3C/script>')</script>  
@@ -15,13 +17,16 @@
   <script src="https://unpkg.com/socket.io-client@^2.2.0/dist/socket.io.js"></script>
   <script src="https://unpkg.com/open-easyrtc@^2.0.5/api/easyrtc.js"></script>
 
+  <!-- No Idea --> 
   <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
   <script src="/spawn-in-circle.component.js"></script> <!-- todo: put this file in this repo -->
   
-  <!-- GH Additions --> 
+  <!-- Teleport Controls Stuff  --> 
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  
+  <!-- Environment --> 
   <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
   
 </head>
@@ -150,39 +155,37 @@
     audio: true;
     adapter: easyrtc;" physics="debug: false; gravity: 0; restitution: 0.9; " background="color: #AAAAAA">
     <a-assets>
-            
-      <!-- Templates -->
-      <a-asset-item id="aboutTime" src="https://raw.githubusercontent.com/ghoople/artbuilds/main/about-time/About_Time.gltf"></a-asset-item>
+		<!-- Add model files to asset list here, host them on github. Must also load them below --> 
+		<a-asset-item id="aboutTime" src="https://raw.githubusercontent.com/ghoople/artbuilds/main/about-time/About_Time.gltf"></a-asset-item>
       
-      <!-- Avatar -->
-      <template id="avatar-template" type="text/html">
-        <a-entity class="avatar" networked-audio-source>
-          <a-sphere class="head" color="#5985ff" scale="0.45 0.5 0.4" random-color></a-sphere>
-          <a-entity class="face" position="0 0.05 0">
-            <a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
-              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
-            </a-sphere>
-            <a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
-              <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
-            </a-sphere>
-          </a-entity>
-        </a-entity>
-      </template>
-
-    <!-- /Templates -->
+		<!-- Avatar Template-->
+		<template id="avatar-template" type="text/html">
+			<a-entity class="avatar" networked-audio-source>
+			  <a-sphere class="head" color="#5985ff" scale="0.45 0.5 0.4" random-color></a-sphere>
+			  <a-entity class="face" position="0 0.05 0">
+				<a-sphere class="eye" color="#efefef" position="0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+				  <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+				</a-sphere>
+				<a-sphere class="eye" color="#efefef" position="-0.16 0.1 -0.35" scale="0.12 0.12 0.12">
+				  <a-sphere class="pupil" color="#000" position="0 0 -1" scale="0.2 0.2 0.2"></a-sphere>
+				</a-sphere>
+			  </a-entity>
+			</a-entity>
+		</template>
     </a-assets>
-      <a-entity>
-          <a-gltf-model id="model" src="#aboutTime" position="-4 0 -1" rotation="0 140 0" class="collidable" static-body></a-gltf-model>
-      </a-entity>
-     <!-- Other environments: yavapai, forest, egypt --> 
+	
+	<!--- Create Model in World Here --> 
+	<a-entity>
+		<a-gltf-model id="model" src="#aboutTime" position="-4 0 -1" rotation="0 140 0" class="collidable" static-body></a-gltf-model>
+	</a-entity>
+ 
+	<!-- Setup the evironment. Other environments: yavapai, forest, egypt --> 
+	<a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity> 
 
-      <a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity> 
+	<!-- Need a ground for teleporting landing base with collidable objects, there might be a better way to do this--> 
+	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.002 0" height="-0.001"></a-cylinder> 
 
-      <!-- Need a ground for teleporting landing base with collidable objects--> 
-      <a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.1 0" height="-0.1"></a-cylinder> 
-
-
-      <!-- Add player with teleportation controls etc --> 
+    <!-- Add player with teleportation controls --> 
 	<a-entity id="cameraRig">
 		<a-entity id="playerHead" 
 		camera 
