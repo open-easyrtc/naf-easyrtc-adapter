@@ -22,9 +22,10 @@
   <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
   <script src="/spawn-in-circle.component.js"></script> <!-- todo: put this file in this repo -->
   
-  <!-- Teleport Controls Stuff  --> 
+  <!-- Mobility Controls Stuff  --> 
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
   
   <!-- Environment --> 
   <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
@@ -190,8 +191,8 @@
 		<a-entity id="playerHead" 
 		camera		
 		look-controls
-		touch-controls
-		wasd-controls		
+		wasd-controls
+		twoway-motion
 		position="0 1.8 0" 
 		networked="template:#avatar-template;attachTemplateToLocal:false;"
 		spawn-in-circle="radius:3">
