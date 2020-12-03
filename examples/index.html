@@ -187,14 +187,14 @@
 	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.05 0" height="-0.01"></a-cylinder> 
 
     <!-- Add player with teleportation controls --> 
-	<a-entity id="cameraRig">
+	<a-entity id="cameraRig"
+	networked="template:#avatar-template;attachTemplateToLocal:false;">
 		<a-entity id="playerHead" 
 		camera		
 		look-controls
 		wasd-controls
 		twoway-motion="speed: 60"
 		position="0 1.8 0" 
-		networked="template:#avatar-template;attachTemplateToLocal:false;"
 		spawn-in-circle="radius:3">
 		</a-entity>
 		
