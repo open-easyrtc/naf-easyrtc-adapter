@@ -184,7 +184,7 @@
 	<a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity> 
 
 	<!-- Need a ground for teleporting landing base with collidable objects, there might be a better way to do this--> 
-	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.005 0" height="-0.001"></a-cylinder> 
+	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.01 0" height="-0.001"></a-cylinder> 
 
     <!-- Add player with teleportation controls --> 
 	<a-entity id="cameraRig">
@@ -192,7 +192,7 @@
 		camera		
 		look-controls
 		wasd-controls
-		twoway-motion
+		twoway-motion="speed: 40"
 		position="0 1.8 0" 
 		networked="template:#avatar-template;attachTemplateToLocal:false;"
 		spawn-in-circle="radius:3">
