@@ -182,6 +182,9 @@
  
 	<!-- Setup the evironment. Other environments: yavapai, forest, egypt --> 
 	<a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity> 
+	
+	<!-- Need a ground for teleporting landing base with collidable objects, there might be a better way to do this--> 
+	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.05 0" height="-0.01"></a-cylinder> 
 
     <!-- Add player with teleportation controls --> 
 	<a-entity id="cameraRig"
@@ -204,7 +207,7 @@
 		
 		<a-entity id="ctlL"
 		  teleport-controls="cameraRig: #cameraRig; teleportOrigin: #playerHead; startEvents: teleportstart; endEvents: teleportend; 
-							 collisionEntities: #.environmentGround, #model; landingMaxAngle: 80"
+							 collisionEntities: #ground, #model; landingMaxAngle: 80"
 		  raycaster="objects: .collidable; far:1.2; " oculus-touch-controls="hand: left" input-listen>
 		  <a-text value="Trigger: shoot a ball\nGrip: Grab large object\nX: Teleport" position="0 0.08 0"
 			  rotation="-90 0 0" scale="0.1 0.1 0.1" align="center" color="#FFFFFF"></a-text>
