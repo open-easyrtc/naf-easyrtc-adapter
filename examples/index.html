@@ -157,8 +157,8 @@
     adapter: easyrtc;" physics="debug: false; gravity: 0; restitution: 0.9; " background="color: #AAAAAA">
     <a-assets>
 		<!-- Add model files to asset list here, host them on github. Must also load them below --> 
-		<a-asset-item id="aboutTime" src="https://raw.githubusercontent.com/ghoople/artbuilds/main/about-time/About_Time.gltf"></a-asset-item>
-      
+		<a-asset-item id="aboutTime" src="https://github.com/ghoople/art-builds-multiplayer/blob/oculus-vr/models/Sri%20Yantra%20%20Sculpture.glb?raw=true"></a-asset-item>
+      	<!-- https://raw.githubusercontent.com/ghoople/artbuilds/main/about-time/About_Time.gltf --> 
 		<!-- Avatar Template-->
 		<template id="avatar-template" type="text/html">
 			<a-entity class="avatar" networked-audio-source>
@@ -173,13 +173,13 @@
 	<a-entity>
 		<a-gltf-model id="model" src="#aboutTime" position="-4 0 -1" rotation="0 140 0" class="collidable" static-body></a-gltf-model>
 	</a-entity>
- 
+	
 	<!-- Setup the evironment. Other environments: yavapai, forest, egypt --> 
 	<a-entity environment="preset: yavapai; dressingAmount: 500"></a-entity> 
 	
 	<!-- Need a ground for teleporting landing base with collidable objects, teleporing to .environmentGround seems broken--> 
 	<a-cylinder id="ground" src="#groundTexture" radius="32" position="0 -0.05 0" height="-0.01"></a-cylinder> 
-
+	
     <!-- Add player with teleportation controls --> 
 	<a-entity id="cameraRig"
 	networked="template:#avatar-template;attachTemplateToLocal:false;"
@@ -188,6 +188,7 @@
 		<a-entity id="playerHead" 
 		camera		
 		look-controls
+		twoway-motion="speed: 60" 
 		position="0 1.6 0"
 		spawn-in-circle="radius:3"
 		wasd-controls-enabled="false">
